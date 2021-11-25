@@ -170,12 +170,6 @@ func main() {
 		return c.SendString(fmt.Sprintf("/%s", id))
 	})
 
-	app.Use("/public/monaco-editor/*", func(c *fiber.Ctx) error {
-		c.Response().Header.Set("Cache-Control", "public, max-age=604800")
-		c.Next()
-		return nil
-	})
-
 	app.Use("/public", filesystem.New(filesystem.Config{
 		Root:       http.FS(content),
 		PathPrefix: "html",
