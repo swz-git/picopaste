@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="/public/style.css">
+  <title>PicoPaste - {{ .Name }}</title>
+</head>
+<body>
+  <div class="editorContainer">
+    <div class="editor"></div>
+  </div>
+  <script src="/public/monaco-editor/min/vs/loader.js"></script>
+  <script>
+    require.config({ paths: { vs: '/public/monaco-editor/min/vs' } });
+
+    require(['vs/editor/editor.main'], function () {
+      var editor = monaco.editor.create(document.querySelector('.editor'), {
+        value: "{{ .Value }}",
+        language: 'text',
+        theme: 'vs-dark',
+        dynamicLayout: true,
+      });
+      window.editor = editor
+
+      window.onresize = function (){
+        editor.layout();
+        console.log("dahri")
+      };
+    });
+  </script>
+  <div class="topright">
+    <h1>PicoPaste</h1>
+    <p class="name">{{ .Name }}</p>
+    <div class="buttons">
+      <button id="save">Save</button>
+      <script>
+        document.getElementById("save").onclick = function() {
+          axios.post('/paste', editor.getValue())
+          .then(function (response) {
+            location.replace(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        };
+      </script>
+      <a href="/">
+        <button id="new">New</button>
+      </a>
+      <a href="/raw/{{ .Name }}">
+        <button id="raw">Raw</button>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

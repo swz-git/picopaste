@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+
+html,
+body,
+.editorContainer,
+.editor {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.topright {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-style: italic;
+  font-family: "Outfit", sans-serif;
+  padding: 0 0.5rem;
+  padding-bottom: 0.5rem;
+  border-left: solid 1px black;
+  border-bottom: solid 1px black;
+  background-color: white;
+}
+.name {
+  font-size: 0.8rem;
+  color: darkgray;
+  padding: 0;
+  margin-top: -0.25rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+button {
+  font-family: "Outfit", sans-serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  flex: 1;
+}
