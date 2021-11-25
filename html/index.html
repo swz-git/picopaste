@@ -7,6 +7,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="/public/style.css">
   <title>PicoPaste - {{ .Name }}</title>
+  <pre id="val" style="display: none;">{{ .Value }}</pre>
+  <script>
+    const VALUE = document.getElementById("val").innerText
+  </script>
 </head>
 <body>
   <div class="editorContainer">
@@ -18,7 +22,7 @@
 
     require(['vs/editor/editor.main'], function () {
       var editor = monaco.editor.create(document.querySelector('.editor'), {
-        value: "{{ .Value }}",
+        value: VALUE,
         language: 'text',
         theme: 'vs-dark',
         dynamicLayout: true,

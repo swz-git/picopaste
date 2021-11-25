@@ -4,10 +4,10 @@ import (
 	"bytes"
 	"embed"
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
-	"text/template"
 	"time"
 
 	"git.mills.io/prologic/bitcask"
