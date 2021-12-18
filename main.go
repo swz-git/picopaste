@@ -48,7 +48,7 @@ func main() {
 	log.Println("Opening database...")
 	dbpath := os.Getenv("PICOPASTE_DB_PATH")
 	if dbpath == "" {
-		dbpath = "/tmp/db"
+		dbpath = "/tmp/picopastedb"
 	}
 	db, err := bitcask.Open(dbpath)
 	if err != nil {
@@ -180,6 +180,6 @@ func main() {
 		port = "8080"
 	}
 	fmt.Println(asciilogo)
-	color.Green("Picopaste is running on port " + port + " (http://127.0.0.1:" + port + ")")
+	color.Green("Picopaste is running on port " + port + " (http://127.0.0.1:" + port + ") storing pastes in " + dbpath)
 	app.Listen(":" + port)
 }
